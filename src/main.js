@@ -124,7 +124,8 @@ async function startApp(user) {
       history.replaceState(null, "", location.pathname);
       workspaceHandle?.destroy?.();
       workspaceHandle = null;
-      await showAuth();
+      // the SIGNED_OUT listener may already have swapped to the auth screen
+      if (mode !== "auth") await showAuth();
       toast.info("Signed out", "Your work is saved to your account.");
     },
   });
