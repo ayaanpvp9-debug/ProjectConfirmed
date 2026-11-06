@@ -46,6 +46,7 @@ scores, no fake statistics and no placeholder buttons.
 ## 3. Quick start
 
 ```bash
+# Node 22 (see .node-version)
 npm install
 cp .env.example .env      # optional: fill in your own project
 npm run dev               # http://localhost:5173
@@ -159,7 +160,51 @@ registration already validates the address format and requires a phone number. E
 
 ---
 
-## 6. Demo account
+## 6. Deploying to Render
+
+The repository ships a [`render.yaml`](render.yaml) Blueprint that builds the Vite bundle and
+serves it as a **Render Static Site** — no server process, so it fits the free tier.
+
+### One-click (Blueprint)
+
+1. Push this repository to GitHub.
+2. In Render, choose **New + → Blueprint**, select the repo, and confirm the branch.
+3. Render reads `render.yaml` and creates the `academia` static site.
+4. When prompted, paste `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
+   (Supabase → *Project Settings → API*).
+5. Click **Apply**. The first build runs `npm ci && npm run build` and publishes `dist/`.
+
+The live URL appears at the top of the service page (`https://academia.onrender.com` or your
+custom domain), and every pull request gets its own preview deployment.
+
+### Manual static site
+
+| Setting | Value |
+| --- | --- |
+| Service type | Static Site |
+| Build command | `npm ci && npm run build` |
+| Publish directory | `dist` |
+| Node version | `22.22.0` (pinned in `.node-version`) |
+| Rewrite rule | `/*` → `/index.html` |
+
+### What the Blueprint configures
+
+* `runtime: static` with `staticPublishPath: ./dist`
+* SPA rewrite `/* → /index.html` (existing files are still served first, so hashed assets are untouched)
+* `Cache-Control: public, max-age=31536000, immutable` for `/assets/*`; revalidation for `index.html`
+* `X-Content-Type-Options`, `Referrer-Policy` and `Permissions-Policy` hardening
+* `NODE_VERSION=22.22.0`, automatic pull-request previews, deploy on push
+
+### After the first deploy
+
+* `VITE_*` values are compiled into the bundle — after changing them use
+  **Manual Deploy → Clear build cache & deploy**.
+* Add the Render URL to Supabase **Authentication → URL Configuration → Site URL** (and the
+  redirect allow-list) if you later enable email confirmation.
+* No other hosting is required: the browser talks to Supabase and the Edge Functions directly,
+  and `VITE_SUPABASE_SERVICE_ROLE_KEY` must never be added to Render.
+
+## 7. Demo account
 
 A seeded student is available for evaluation:
 
@@ -174,7 +219,7 @@ It contains 12 homework items, 8 study sessions, 3 graded mock attempts and 31 a
 
 ---
 
-## 7. Project structure
+## 8. Project structure
 
 ```
 .
@@ -195,6 +240,8 @@ It contains 12 homework items, 8 study sessions, 3 graded mock attempts and 31 a
 ├── supabase/
 │   ├── schema.sql seed.sql demo-data.sql
 │   └── functions/{username-login,register-student,mock-test}/index.ts
+├── render.yaml                 # Render Blueprint (static site + SPA rewrite + headers)
+├── .node-version               # Node 22.22.0 for local + Render builds
 └── vite.config.js
 ```
 
@@ -215,7 +262,7 @@ asks to create something.
 
 ---
 
-## 8. Design & accessibility notes
+## 9. Design & accessibility notes
 
 * Three typefaces (Sora display, Inter UI, JetBrains Mono numerals), deep-navy atmosphere with
   aurora gradients, a fine grid, noise and a vignette — **no particles or 3D**.
@@ -229,7 +276,7 @@ asks to create something.
 
 ---
 
-## 9. Verified content sources
+## 10. Verified content sources
 
 NCERT links were checked against `ncert.nic.in/textbook.php?<code>=0-<n>` before being seeded
 (for example `jemh1` — Class 10 Mathematics, `aemh1` — Class 1 Math-Magic, `iesc1` — Class 9
@@ -239,7 +286,7 @@ pointing somewhere invented.
 
 ---
 
-## 10. Licence
+## 11. Licence
 
 Built as a school coding-competition entry. Content and NCERT material remain the property of
 their respective owners.

@@ -1,0 +1,64 @@
+# -----------------------------------------------------------------------------
+# ACADEMIA — Render Blueprint
+#
+# Deploys the Vite build as a Render Static Site (free tier friendly).
+# Create it with: Render Dashboard → New + → Blueprint → pick this repository.
+#
+# The two VITE_ variables are baked into the bundle at BUILD time, so after you
+# change them you must trigger a new deploy. They are marked `sync: false` so
+# Render asks for the values once instead of storing them in this file.
+# Both are public by design — Row Level Security protects the data.
+# Never add SUPABASE_SERVICE_ROLE_KEY here or anywhere in the frontend.
+# -----------------------------------------------------------------------------
+services:
+  - type: web
+    name: academia
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    # Every pull request gets its own preview URL.
+    previews:
+      generation: automatic
+    envVars:
+      # Pin the toolchain so the build is reproducible (also in .node-version).
+      - key: NODE_VERSION
+        value: 22.22.0
+
+      # e.g. https://cirkoogdprlxkktxcnlj.supabase.co
+      - key: VITE_SUPABASE_URL
+        sync: false
+
+      # Publishable / anon key only. This value ships to the browser.
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+
+    # SPA fallback: the app routes on the hash (#/homework), but this keeps
+    # direct hits like /settings working after a hard refresh. Render serves an
+    # existing file first, so hashed assets are never rewritten.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+    headers:
+      # Vite fingerprints every file in /assets, so it can be cached forever.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+
+      # index.html must always be revalidated so a new deploy is picked up.
+      - path: /index.html
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
