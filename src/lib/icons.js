@@ -1,0 +1,192 @@
+/**
+ * Lucide icons rendered as inline SVG strings.
+ *
+ * Only the icons this app actually uses are imported, so the bundle stays
+ * small (importing the full `icons` map adds ~600 kB).
+ */
+import {
+  Activity,
+  AlertTriangle,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpDown,
+  ArrowUpRight,
+  AtSign,
+  BarChart3,
+  Bell,
+  BookMarked,
+  BookOpen,
+  BookText,
+  Brain,
+  CalendarClock,
+  CalendarDays,
+  ChartColumn,
+  ChartLine,
+  Check,
+  CheckCheck,
+  CheckCircle2,
+  ClipboardCheck,
+  ClipboardList,
+  Clock,
+  Cloud,
+  Cpu,
+  Database,
+  Download,
+  ExternalLink,
+  Eye,
+  EyeOff,
+  FileText,
+  Flag,
+  Flame,
+  FlaskConical,
+  GraduationCap,
+  History,
+  Hourglass,
+  Inbox,
+  Info,
+  KeyRound,
+  Landmark,
+  Layers,
+  LayoutDashboard,
+  Library,
+  Lightbulb,
+  ListChecks,
+  Loader2,
+  Lock,
+  LogOut,
+  Mail,
+  Menu,
+  NotebookPen,
+  PanelLeftClose,
+  Pencil,
+  Play,
+  Plus,
+  RefreshCw,
+  RotateCcw,
+  Save,
+  Search,
+  Settings,
+  ShieldCheck,
+  Sigma,
+  Signal,
+  Smartphone,
+  Sparkles,
+  Target,
+  Timer,
+  Trash2,
+  Trophy,
+  UserCheck,
+  UserRound,
+  Wand2,
+  X,
+} from "lucide";
+
+const registry = {
+  Activity,
+  AlertTriangle,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpDown,
+  ArrowUpRight,
+  AtSign,
+  BarChart3,
+  Bell,
+  BookMarked,
+  BookOpen,
+  BookText,
+  Brain,
+  CalendarClock,
+  CalendarDays,
+  ChartColumn,
+  ChartLine,
+  Check,
+  CheckCheck,
+  CheckCircle2,
+  ClipboardCheck,
+  ClipboardList,
+  Clock,
+  Cloud,
+  Cpu,
+  Database,
+  Download,
+  ExternalLink,
+  Eye,
+  EyeOff,
+  FileText,
+  Flag,
+  Flame,
+  FlaskConical,
+  GraduationCap,
+  History,
+  Hourglass,
+  Inbox,
+  Info,
+  KeyRound,
+  Landmark,
+  Layers,
+  LayoutDashboard,
+  Library,
+  Lightbulb,
+  ListChecks,
+  Loader2,
+  Lock,
+  LogOut,
+  Mail,
+  Menu,
+  NotebookPen,
+  PanelLeftClose,
+  Pencil,
+  Play,
+  Plus,
+  RefreshCw,
+  RotateCcw,
+  Save,
+  Search,
+  Settings,
+  ShieldCheck,
+  Sigma,
+  Signal,
+  Smartphone,
+  Sparkles,
+  Target,
+  Timer,
+  Trash2,
+  Trophy,
+  UserCheck,
+  UserRound,
+  Wand2,
+  X,
+};
+
+const attrsToString = (attrs = {}) =>
+  Object.entries(attrs)
+    .filter(([, v]) => v !== undefined && v !== null && v !== false)
+    .map(([k, v]) => `${k}="${v}"`)
+    .join(" ");
+
+function renderNode(node) {
+  const [tag, attrs, children] = node;
+  const inner = Array.isArray(children) ? children.map(renderNode).join("") : "";
+  return `<${tag} ${attrsToString(attrs)}>${inner}</${tag}>`;
+}
+
+/** icon("GraduationCap", { size: 18 }) → <svg …> */
+export function icon(name, options = {}) {
+  const node = registry[name];
+  if (!node) {
+    console.warn(`[academia] unknown icon: ${name}`);
+    return "";
+  }
+  const [tag, attrs, children] = node;
+  const config = {
+    ...attrs,
+    width: options.size ?? 18,
+    height: options.size ?? 18,
+    class: options.class,
+    "stroke-width": options.strokeWidth ?? attrs["stroke-width"],
+    "aria-hidden": "true",
+    focusable: "false",
+  };
+  const inner = Array.isArray(children) ? children.map(renderNode).join("") : "";
+  return `<${tag} ${attrsToString(config)}>${inner}</${tag}>`;
+}
