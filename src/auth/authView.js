@@ -250,7 +250,7 @@ const template = () => `
   </div>
 `;
 
-export function renderAuth(root, { onAuthed } = {}) {
+export function renderAuth(root, { onAuthed, initial = "login" } = {}) {
   root.innerHTML = template();
 
   const stage = root.querySelector(".auth-stage");
@@ -790,7 +790,15 @@ export function renderAuth(root, { onAuthed } = {}) {
 
   // tab pill starts on "Sign in"
   gsap.set(pill, { x: 0 });
-  setTimeout(() => loginFields.username.input.focus({ preventScroll: true }), 700);
+
+  // Optionally open on the registration tab (e.g. "Create an account").
+  if (initial === "register") {
+    mode = "login"; // let setMode run its transition
+    setMode("register", { focus: false });
+    setTimeout(() => registerFields.username.input.focus({ preventScroll: true }), 700);
+  } else {
+    setTimeout(() => loginFields.username.input.focus({ preventScroll: true }), 700);
+  }
 
   if (prefersReduced()) {
     gsap.set(card, { opacity: 1 });

@@ -1,8 +1,8 @@
 # ACADEMIA — Student Workspace
 
-A full-stack study platform for school students: secure authentication, homework management,
-a study planner, a class-wise NCERT library, server-graded mock tests and a performance
-dashboard. Built with **HTML5, CSS3 and vanilla JavaScript** — no React, Vue or Angular.
+A full-stack study platform for school students: a public introduction page, secure
+authentication, homework management, a study planner, a class-wise NCERT library,
+server-graded mock tests and a performance dashboard. Built with **HTML5, CSS3 and vanilla JavaScript** — no React, Vue or Angular.
 
 Everything the dashboard shows is queried from Supabase in real time. There are no hard-coded
 scores, no fake statistics and no placeholder buttons.
@@ -13,7 +13,8 @@ scores, no fake statistics and no placeholder buttons.
 
 | Area | What it does |
 | --- | --- |
-| **Authentication** | The first and only public screen. Registration (email + phone + username + password) validates format, checks duplicates through a `SECURITY DEFINER` RPC, creates the Supabase Auth user through an Edge Function and stores the extra fields. Animated success screen with a prominent *Back to login*. Login accepts **username + password only**. |
+| **Landing page** | Public introduction — no account needed. Explains what ACADEMIA is, why it exists, who it serves (school students, Class 1–12) and the four tools inside, with a prominent **Get Started** button. If the visitor already has a session, Get Started opens their workspace directly; otherwise it opens the auth screen. |
+| **Authentication** | Registration Registration (email + phone + username + password) validates format, checks duplicates through a `SECURITY DEFINER` RPC, creates the Supabase Auth user through an Edge Function and stores the extra fields. Animated success screen with a prominent *Back to login*. Login accepts **username + password only**. |
 | **Overview** | Greeting with the student's name, live date, homework completion percentage, completed/pending/overdue totals, upcoming deadlines, mock tests attempted, average score and a recent activity timeline — all from Supabase rows. |
 | **Homework Manager** | Full CRUD (subject, deadline, priority, status), search, status/subject filters, five sort modes, overdue highlighting, optimistic toggles, animated *YOUR HOMEWORK PROGRESS* bar with counting percentage, and a 7-day completion chart. |
 | **Study Planner** | Session CRUD (subject, date-time, duration, notes, completed), a week strip, a day agenda and an upcoming queue, plus a weekly load chart. |
@@ -24,6 +25,7 @@ scores, no fake statistics and no placeholder buttons.
 
 ### Interface details
 
+* Public landing page first, then auth, then the workspace — the landing uses the same palette, type and GSAP motion.
 * Collapsible sidebar with icon-only mode, unread notifications popover and account menu.
 * Hash-based routing (`#/overview`, `#/homework`, …) with animated view transitions — **no full page reloads**.
 * Keyboard: `Alt+1…7` switches views, `1–4` selects an option in an exam, `←/→` moves between questions, `M` marks for review.
@@ -225,7 +227,8 @@ It contains 12 homework items, 8 study sessions, 3 graded mock attempts and 31 a
 .
 ├── index.html                  # single entry, atmosphere layers, boots /src/main.js
 ├── src/
-│   ├── main.js                 # boot, SVG gradient defs, auth ↔ workspace switch
+│   ├── main.js                 # boot, SVG defs, landing → auth → workspace switch
+│   ├── landing/landingView.js  # public introduction page + Get Started handoff
 │   ├── app/shell.js            # sidebar, top bar, popovers, hash router, view lifecycle
 │   ├── auth/authView.js        # login / register / success screens
 │   ├── views/
@@ -236,7 +239,7 @@ It contains 12 homework items, 8 study sessions, 3 graded mock attempts and 31 a
 │   │   └── settings.js
 │   ├── lib/                    # config, supabase client, api, icons, motion, dom, store
 │   ├── ui/                     # toast, modal, brand marks
-│   └── styles/                 # base, auth, shell, views
+│   └── styles/                 # base, auth, shell, views, landing
 ├── supabase/
 │   ├── schema.sql seed.sql demo-data.sql
 │   └── functions/{username-login,register-student,mock-test}/index.ts

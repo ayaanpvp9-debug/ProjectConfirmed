@@ -1,18 +1,21 @@
 /**
  * ACADEMIA · application bootstrap
- * The very first thing anyone sees is the authentication stage — there is no
- * public landing page.
+ *
+ * Flow: public introduction page → authentication → workspace.
+ * Visitors can read the landing page without an account; "Get Started" opens
+ * the auth screen, or the workspace directly when a session already exists.
  */
 import "./styles/base.css";
 import "./styles/auth.css";
 import "./styles/shell.css";
 import "./styles/views.css";
+import "./styles/landing.css";
 
 import { supabase, fetchProfile } from "./lib/supabase.js";
 import { renderAuth } from "./auth/authView.js";
+import { renderLanding } from "./landing/landingView.js";
 import { mountWorkspace } from "./app/shell.js";
 import { gsap, prefersReduced, ambientBackground, applyMotionDataset } from "./lib/motion.js";
-import { icon } from "./lib/icons.js";
 import { toast } from "./ui/toast.js";
 import { setProfile, setSession } from "./lib/store.js";
 
@@ -49,45 +52,79 @@ function injectSvgDefs() {
   document.body.appendChild(holder);
 }
 
-const bootMarkup = () => `
-  <div class="boot" id="boot">
-    <div class="boot__inner">
-      <div class="boot__mark">${icon("GraduationCap", { size: 44, strokeWidth: 1.2 })}</div>
-      <span class="boot__label">ACADEMIA</span>
-      <span class="boot__bar"><span></span></span>
-    </div>
-  </div>`;
+let mode = "boot"; // boot → landing → auth → app
+let workspaceHandle = null;
+let landingHandle = null;
 
-async function dismissBoot() {
-  const boot = document.getElementById("boot");
-  if (!boot) return;
-  if (prefersReduced()) {
-    boot.remove();
-    return;
+/* Public introduction page — always the first screen, signed in or not. */
+async function showLanding() {
+  mode = "landing";
+  workspaceHandle?.destroy?.();
+  workspaceHandle = null;
+  landingHandle?.();
+  landingHandle = null;
+
+  app.setAttribute("aria-busy", "false");
+  app.innerHTML = "";
+  window.scrollTo(0, 0);
+
+  let signedIn = false;
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    signedIn = Boolean(session?.user);
+  } catch (error) {
+    console.warn("[academia] session check failed", error);
   }
-  await new Promise((resolve) => {
-    gsap.to(boot, {
-      opacity: 0,
-      duration: 0.55,
-      ease: "power2.inOut",
-      onComplete: () => {
-        boot.remove();
-        resolve();
-      },
-    });
+
+  landingHandle = renderLanding(app, {
+    signedIn,
+    onGetStarted: handleGetStarted,
+    onSignIn: () => showAuth(),
+    onCreateAccount: () => showAuth({ initial: "register" }),
   });
 }
 
-let mode = "boot";
-let workspaceHandle = null;
+/**
+ * "Get Started" — a returning, still-signed-in student skips the login form and
+ * lands straight in the workspace; everyone else gets the auth screen.
+ */
+async function handleGetStarted() {
+  let session = null;
+  try {
+    const { data } = await supabase.auth.getSession();
+    session = data?.session ?? null;
+  } catch (error) {
+    console.warn("[academia] session check failed", error);
+  }
 
-async function showAuth() {
+  if (session?.user) {
+    try {
+      await startApp(session.user);
+    } catch (error) {
+      console.warn("[academia] workspace restore failed", error);
+      await supabase.auth.signOut().catch(() => {});
+      await showAuth();
+      return;
+    }
+    if (mode === "app" || mode === "auth") return;
+  }
+
+  await showAuth();
+}
+
+async function showAuth({ initial = "login" } = {}) {
   mode = "auth";
+  landingHandle?.();
+  landingHandle = null;
   workspaceHandle?.destroy?.();
   workspaceHandle = null;
   app.setAttribute("aria-busy", "false");
   app.innerHTML = "";
+  window.scrollTo(0, 0);
   renderAuth(app, {
+    initial,
     onAuthed: async (user) => {
       try {
         await startApp(user);
@@ -114,8 +151,11 @@ async function startApp(user) {
   setSession(session);
   setProfile(profile);
   mode = "app";
+  landingHandle?.();
+  landingHandle = null;
 
   app.setAttribute("aria-busy", "false");
+  window.scrollTo(0, 0);
   app.innerHTML = "";
   workspaceHandle = await mountWorkspace(app, {
     profile,
@@ -144,32 +184,15 @@ async function boot() {
   applyMotionDataset();
   ambientBackground();
 
-  const boot = document.createElement("div");
-  boot.innerHTML = bootMarkup();
-  app.appendChild(boot.firstElementChild);
-
   try {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (session?.user) {
-      try {
-        await startApp(session.user);
-      } catch (error) {
-        console.warn("[academia] session restore failed", error);
-        await supabase.auth.signOut();
-        await showAuth();
-      }
-    } else {
-      await showAuth();
-    }
+    // Sessions no longer auto-open the workspace: the introduction page is the
+    // first screen for everyone, and "Get Started" decides where to go.
+    await showLanding();
   } catch (error) {
     console.error("[academia] boot failed", error);
     await showAuth();
   }
 
-  await dismissBoot();
   app.removeAttribute("aria-busy");
 }
 
