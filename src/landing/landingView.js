@@ -333,7 +333,7 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
 
           <div class="carousel" data-carousel>
             <div class="carousel__frame" data-viewport tabindex="0" role="group"
-                 aria-roledescription="carousel" aria-label="Photographs of students studying">
+                 aria-roledescription="carousel" aria-label="Images of students studying">
               <div class="carousel__track" data-track>
                 ${SLIDES.map(
                   (slide, index) => `
