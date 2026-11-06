@@ -63,6 +63,165 @@ const STEPS = [
   },
 ];
 
+const SLIDES = [
+  {
+    src: "/images/learning-focus.jpg",
+    alt: "A student writing in a notebook beside an open textbook and a laptop, lit by cool blue screen light.",
+    tag: "01 — Focused practice",
+    title: "One subject, one hour, one clear next step.",
+    text: "Homework, deadlines and revision sit in the same place, so the evening starts with work instead of decisions.",
+    width: 1376,
+    height: 768,
+    position: "50% 45%",
+  },
+  {
+    src: "/images/learning-digital.jpg",
+    alt: "A hand using a stylus on a tablet showing a geometry diagram and charts, next to stacked textbooks.",
+    tag: "02 — Practice on screen",
+    title: "Draw it, solve it, then check the working.",
+    text: "Five subjects of timed mock tests with solutions that unlock only after you submit.",
+    width: 1376,
+    height: 768,
+    position: "50% 50%",
+  },
+  {
+    src: "/images/learning-together.jpg",
+    alt: "Three school students discussing a laptop together in a school library at night.",
+    tag: "03 — Built around school",
+    title: "Textbooks by class, plans by week.",
+    text: "A class-wise NCERT library and a study planner that follow the syllabus you actually have.",
+    width: 1584,
+    height: 672,
+    position: "50% 42%",
+  },
+];
+
+/**
+ * Carousel controller: autoplay, arrows, dots, swipe, keyboard.
+ * Auto-advance pauses on hover/focus, when the tab is hidden and when the
+ * carousel is scrolled out of view; it never runs for reduced-motion visitors.
+ */
+function setupCarousel(carousel) {
+  if (!carousel) return () => {};
+  const slides = Array.from(carousel.querySelectorAll("[data-slide]"));
+  const dots = Array.from(carousel.querySelectorAll("[data-dot]"));
+  const viewport = carousel.querySelector("[data-viewport]");
+  const count = carousel.querySelector("[data-count]");
+  const total = slides.length;
+  if (!total) return () => {};
+
+  const AUTOPLAY_MS = 6200;
+  const pad = (value) => String(value).padStart(2, "0");
+  let index = 0;
+  let timer = null;
+  let paused = false;
+  let onScreen = true;
+
+  function paint() {
+    slides.forEach((slide, position) => {
+      const active = position === index;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+    });
+    dots.forEach((dot, position) => dot.setAttribute("aria-current", String(position === index)));
+    if (count) count.textContent = `${pad(index + 1)} / ${pad(total)}`;
+  }
+
+  function stopTimer() {
+    if (timer) window.clearInterval(timer);
+    timer = null;
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (prefersReduced()) return;
+    timer = window.setInterval(() => {
+      if (paused || !onScreen || document.hidden) return;
+      index = (index + 1) % total;
+      paint();
+    }, AUTOPLAY_MS);
+  }
+
+  function show(next) {
+    index = ((next % total) + total) % total;
+    paint();
+    startTimer();
+  }
+
+  carousel.querySelector("[data-prev]")?.addEventListener("click", () => show(index - 1));
+  carousel.querySelector("[data-next]")?.addEventListener("click", () => show(index + 1));
+
+  const onDot = (event) => show(Number(event.currentTarget.dataset.dot));
+  dots.forEach((dot) => dot.addEventListener("click", onDot));
+
+  const pauseForMouse = (event) => {
+    if (event.pointerType === "mouse") paused = true;
+  };
+  const resumeForMouse = (event) => {
+    if (event.pointerType === "mouse") paused = false;
+  };
+  carousel.addEventListener("pointerenter", pauseForMouse);
+  carousel.addEventListener("pointerleave", resumeForMouse);
+  carousel.addEventListener("focusin", () => {
+    paused = true;
+  });
+  carousel.addEventListener("focusout", (event) => {
+    if (!carousel.contains(event.relatedTarget)) paused = false;
+  });
+
+  viewport?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      show(index + 1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      show(index - 1);
+    }
+  });
+
+  let startX = null;
+  viewport?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse") return;
+    startX = event.clientX;
+  });
+  const endSwipe = (event) => {
+    if (startX === null) return;
+    const delta = event.clientX - startX;
+    startX = null;
+    if (Math.abs(delta) < 42) return;
+    show(index + (delta < 0 ? 1 : -1));
+  };
+  viewport?.addEventListener("pointerup", endSwipe);
+  viewport?.addEventListener("pointercancel", () => {
+    startX = null;
+  });
+
+  const onVisibility = () => {
+    if (!document.hidden) paused = false;
+  };
+  document.addEventListener("visibilitychange", onVisibility);
+
+  let observer = null;
+  if (typeof IntersectionObserver === "function" && viewport) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        onScreen = entries.some((entry) => entry.isIntersecting);
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(viewport);
+  }
+
+  paint();
+  startTimer();
+
+  return () => {
+    stopTimer();
+    observer?.disconnect();
+    document.removeEventListener("visibilitychange", onVisibility);
+  };
+}
+
 export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, onCreateAccount } = {}) {
   const tweens = [];
 
@@ -157,6 +316,64 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
               <div class="hero-card__foot">
                 ${Array.from({ length: 10 }, (_, index) => `<span data-state="${index < 3 ? "done" : index === 3 ? "live" : "idle"}"></span>`).join("")}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section landing-shell showcase" aria-labelledby="showcase-title">
+          <div class="showcase__head">
+            <div>
+              <span class="eyebrow">A look inside</span>
+              <h2 class="landing-h2" id="showcase-title" data-reveal>Study sessions, on paper and on screen.</h2>
+            </div>
+            <p class="landing-p showcase__note" data-reveal>
+              Notebooks, tablets and library tables — the settings this workspace was designed around.
+            </p>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel__frame" data-viewport tabindex="0" role="group"
+                 aria-roledescription="carousel" aria-label="Photographs of students studying">
+              <div class="carousel__track" data-track>
+                ${SLIDES.map(
+                  (slide, index) => `
+                  <figure class="carousel__slide ${index === 0 ? "is-active" : ""}" data-slide
+                          aria-roledescription="slide" aria-label="${index + 1} of ${SLIDES.length}"
+                          aria-hidden="${index === 0 ? "false" : "true"}">
+                    <div class="carousel__media">
+                      <img src="${slide.src}" alt="${esc(slide.alt)}"
+                           width="${slide.width}" height="${slide.height}"
+                           loading="${index === 0 ? "eager" : "lazy"}" decoding="async"
+                           style="object-position:${slide.position}" />
+                    </div>
+                    <figcaption class="carousel__caption">
+                      <span class="carousel__tag mono">${esc(slide.tag)}</span>
+                      <h3 class="carousel__title">${esc(slide.title)}</h3>
+                      <p class="carousel__text">${esc(slide.text)}</p>
+                    </figcaption>
+                  </figure>`,
+                ).join("")}
+              </div>
+              <span class="carousel__scrim" aria-hidden="true"></span>
+              <button class="carousel__arrow carousel__arrow--prev" type="button" data-prev aria-label="Previous image">
+                ${icon("ArrowLeft", { size: 18 })}
+              </button>
+              <button class="carousel__arrow carousel__arrow--next" type="button" data-next aria-label="Next image">
+                ${icon("ArrowRight", { size: 18 })}
+              </button>
+            </div>
+
+            <div class="carousel__controls">
+              <span class="carousel__note mono">Illustrative imagery</span>
+              <div class="carousel__dots" data-dots role="tablist" aria-label="Choose an image">
+                ${SLIDES.map(
+                  (slide, index) => `
+                  <button class="carousel__dot" type="button" data-dot="${index}" role="tab"
+                          aria-label="Image ${index + 1}: ${esc(slide.tag)}"
+                          aria-current="${index === 0}"></button>`,
+                ).join("")}
+              </div>
+              <span class="carousel__count mono" data-count aria-hidden="true">01 / ${String(SLIDES.length).padStart(2, "0")}</span>
             </div>
           </div>
         </section>
@@ -407,7 +624,10 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
 
   page.querySelectorAll("[data-magnetic]").forEach((element) => magnetic(element));
 
+  const stopCarousel = setupCarousel(page.querySelector("[data-carousel]"));
+
   return () => {
+    stopCarousel();
     tweens.forEach((tween) => tween.kill());
     killScrollTriggers();
     gsap.killTweensOf(page);
