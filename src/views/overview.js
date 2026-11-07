@@ -197,7 +197,7 @@ export async function render(root, ctx) {
                   const isOverdue = new Date(item.deadline).getTime() < now;
                   return `
                   <div class="row-item" data-upcoming>
-                    <span class="row-item__dot" style="background:${isOverdue ? "#ff7ab8" : priorityColor(item.priority)}"></span>
+                    <span class="row-item__dot" style="background:${isOverdue ? "#c22f72" : priorityColor(item.priority)}"></span>
                     <span class="row-item__main">
                       <span class="row-item__title">${esc(item.title)}</span>
                       <span class="row-item__meta">${esc(item.subject)}${isOverdue ? " · overdue" : ""}</span>
@@ -244,8 +244,8 @@ export async function render(root, ctx) {
                       <span style="font-size:12.5px;color:var(--text-soft)">${esc(s.name)}</span>
                       <span class="mono" style="font-size:11px;color:var(--muted)">${s.pct}%</span>
                     </div>
-                    <div style="height:6px;border-radius:99px;background:rgba(255,255,255,0.06);overflow:hidden">
-                      <div data-subject-bar="${s.pct}" style="height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#5b8cff,#c48cff)"></div>
+                    <div style="height:6px;border-radius:99px;background:rgba(15,23,42,0.07);overflow:hidden">
+                      <div data-subject-bar="${s.pct}" style="height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#3861e8,#8a5cf0)"></div>
                     </div>
                   </div>`,
                   )
@@ -253,7 +253,7 @@ export async function render(root, ctx) {
                 <div style="display:flex;align-items:center;gap:0.6rem;margin-top:0.9rem;padding-top:0.9rem;border-top:1px solid var(--line)">
                   ${ringMarkup({ value: average, label: "average", id: "overview-ring", size: 96 })}
                   <div>
-                    <div style="font-family:var(--font-display);font-size:20px;letter-spacing:-0.03em;color:#fff">${average}%</div>
+                    <div style="font-family:var(--font-display);font-size:20px;letter-spacing:-0.03em;color:var(--text)">${average}%</div>
                     <div class="mono" style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-dim)">
                       across ${attempted} test${attempted > 1 ? "s" : ""} · best ${best}%
                     </div>
@@ -299,7 +299,7 @@ export async function render(root, ctx) {
       <div style="display:flex;align-items:center;gap:0.8rem">
         <span class="avatar">${esc(initials(name))}</span>
         <div>
-          <div style="font-family:var(--font-display);font-size:13.5px;color:#fff">Your workspace is live</div>
+          <div style="font-family:var(--font-display);font-size:13.5px;color:var(--text)">Your workspace is live</div>
           <div class="mono" style="font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-dim)">
             ${esc(ctx.profile.username)} · joined ${esc(new Date(ctx.profile.created_at).toLocaleDateString(undefined, { month: "short", year: "numeric" }))}
           </div>
@@ -400,9 +400,9 @@ export async function render(root, ctx) {
 }
 
 function priorityColor(priority) {
-  if (priority === "high") return "#ff7ab8";
-  if (priority === "low") return "#46e0d0";
-  return "#8fb0ff";
+  if (priority === "high") return "#c22f72";
+  if (priority === "low") return "#0f766e";
+  return "#3861e8";
 }
 
 function activityIcon(kind) {

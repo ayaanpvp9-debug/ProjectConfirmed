@@ -216,8 +216,8 @@ const template = () => `
             <svg viewBox="0 0 104 104" aria-hidden="true">
               <defs>
                 <linearGradient id="successGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop stop-color="#7bf1c5"/>
-                  <stop offset="1" stop-color="#8fb0ff"/>
+                  <stop stop-color="#0b7a5a"/>
+                  <stop offset="1" stop-color="#3861e8"/>
                 </linearGradient>
               </defs>
               <circle class="ring-bg" cx="52" cy="52" r="46"/>

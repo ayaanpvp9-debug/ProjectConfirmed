@@ -173,8 +173,8 @@ export function animateBar(fillEl, percent, { duration = 1.2, labelEl = null, fr
 
   tl.fromTo(
     fillEl,
-    { boxShadow: "0 0 0 rgba(120,150,255,0)" },
-    { boxShadow: "0 0 30px rgba(120,150,255,0.55)", duration: 0.4, yoyo: true, repeat: 1 },
+    { boxShadow: "0 0 0 rgba(56,97,232,0)" },
+    { boxShadow: "0 0 30px rgba(56,97,232,0.55)", duration: 0.4, yoyo: true, repeat: 1 },
     0,
   );
 
@@ -248,12 +248,12 @@ export function drawStrokes(targets, { duration = 1.4, stagger = 0.12, delay = 0
   );
 }
 
-export function pulseOnce(element, { color = "rgba(123,241,197,0.35)" } = {}) {
+export function pulseOnce(element, { color = "rgba(11,122,90,0.35)" } = {}) {
   if (!element || prefersReduced()) return;
   gsap.fromTo(
     element,
     { boxShadow: `0 0 0 0 ${color}` },
-    { boxShadow: "0 0 0 16px rgba(123,241,197,0)", duration: 0.9, ease: "power2.out" },
+    { boxShadow: "0 0 0 16px rgba(11,122,90,0)", duration: 0.9, ease: "power2.out" },
   );
 }
 

@@ -1,40 +1,48 @@
 /* ==========================================================================
    ACADEMIA · design foundation
-   Midnight surfaces, electric blue + violet light, precise typography.
+   Daylight surfaces, electric blue + violet light, precise typography.
    ========================================================================== */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* surfaces */
-  --ink-1000: #04050a;
-  --ink-950: #06070f;
-  --ink-900: #090b16;
-  --ink-850: #0c0f1d;
-  --ink-800: #11152a;
-  --ink-700: #1a1f38;
+  --ink-1000: #f6f7fb;
+  --ink-950: #f2f4fa;
+  --ink-900: #ffffff;
+  --ink-850: #ffffff;
+  --ink-800: #eef1f8;
+  --ink-700: #e3e8f2;
 
   /* light */
-  --blue: #5b8cff;
-  --blue-soft: #8fb0ff;
-  --violet: #a06bff;
-  --violet-soft: #c3a3ff;
-  --cyan: #46e0d0;
-  --amber: #ffc06a;
-  --rose: #ff7ab8;
-  --mint: #7bf1c5;
+  --blue: #3861e8;
+  --blue-soft: #3b5fd0;
+  --violet: #7a3ff0;
+  --violet-soft: #6b46d9;
+  --cyan: #0f766e;
+  --amber: #b45309;
+  --rose: #c22f72;
+  --mint: #0b7a5a;
 
   /* type */
-  --text: #eef1ff;
-  --text-soft: #c3c9e6;
-  --muted: #8a92b6;
-  --muted-dim: #616a8c;
+  --text: #0e1729;
+  --text-soft: #2b3752;
+  --muted: #5b6780;
+  --muted-dim: #667086;
 
   /* lines + glass */
-  --line: rgba(255, 255, 255, 0.075);
-  --line-strong: rgba(255, 255, 255, 0.14);
-  --glass: linear-gradient(158deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.018));
-  --glass-strong: linear-gradient(158deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  --line: rgba(15, 23, 42, 0.09);
+  --line-strong: rgba(15, 23, 42, 0.17);
+  --glass: linear-gradient(158deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72));
+  --glass-strong: linear-gradient(158deg, #ffffff, rgba(255, 255, 255, 0.86));
+
+  /* flat surfaces + scrims used across views */
+  --surface: #ffffff;
+  --surface-2: rgba(15, 23, 42, 0.035);
+  --surface-3: rgba(15, 23, 42, 0.06);
+  --scrim: rgba(255, 255, 255, 0.78);
+  --overlay: rgba(15, 23, 42, 0.28);
+  --ink: #0e1729;
 
   /* geometry */
   --r-xs: 8px;
@@ -45,9 +53,9 @@
   --r-2xl: 36px;
   --r-pill: 999px;
 
-  --shadow-sm: 0 2px 10px -4px rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 24px 60px -32px rgba(0, 0, 0, 0.9);
-  --shadow-lg: 0 48px 120px -48px rgba(0, 0, 0, 0.95);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 14px -8px rgba(15, 23, 42, 0.16);
+  --shadow-md: 0 18px 44px -26px rgba(15, 23, 42, 0.3);
+  --shadow-lg: 0 40px 96px -44px rgba(15, 23, 42, 0.38);
 
   --sidebar-w: 268px;
   --sidebar-w-compact: 86px;
@@ -137,8 +145,8 @@ svg {
 }
 
 ::selection {
-  background: rgba(160, 107, 255, 0.32);
-  color: #fff;
+  background: rgba(122, 63, 240, 0.2);
+  color: var(--text);
 }
 
 /* ---------------------------------------------------------------- atmosphere */
@@ -149,9 +157,9 @@ svg {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(120% 90% at 8% -10%, rgba(70, 96, 255, 0.22), transparent 55%),
-    radial-gradient(100% 80% at 92% 0%, rgba(160, 107, 255, 0.18), transparent 58%),
-    radial-gradient(120% 120% at 50% 118%, rgba(70, 224, 208, 0.09), transparent 62%),
+    radial-gradient(120% 90% at 8% -10%, rgba(56, 97, 232, 0.16), transparent 55%),
+    radial-gradient(100% 80% at 92% 0%, rgba(122, 63, 240, 0.12), transparent 58%),
+    radial-gradient(120% 120% at 50% 118%, rgba(15, 118, 110, 0.1), transparent 62%),
     var(--ink-1000);
 }
 
@@ -159,7 +167,7 @@ svg {
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.5;
+  opacity: 0.24;
   will-change: transform;
 }
 
@@ -168,7 +176,7 @@ svg {
   height: 46vw;
   left: -12vw;
   top: -14vw;
-  background: radial-gradient(circle, rgba(64, 108, 255, 0.72), transparent 68%);
+  background: radial-gradient(circle, rgba(56, 97, 232, 0.5), transparent 68%);
 }
 
 .aurora--violet {
@@ -176,7 +184,7 @@ svg {
   height: 42vw;
   right: -10vw;
   top: -6vw;
-  background: radial-gradient(circle, rgba(146, 86, 255, 0.62), transparent 68%);
+  background: radial-gradient(circle, rgba(122, 63, 240, 0.42), transparent 68%);
 }
 
 .aurora--cyan {
@@ -184,33 +192,33 @@ svg {
   height: 40vw;
   left: 32vw;
   bottom: -24vw;
-  background: radial-gradient(circle, rgba(38, 208, 196, 0.4), transparent 70%);
-  opacity: 0.34;
+  background: radial-gradient(circle, rgba(15, 118, 110, 0.3), transparent 70%);
+  opacity: 0.24;
 }
 
 .app-grid {
   position: absolute;
   inset: -20%;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(70% 60% at 50% 30%, #000 15%, transparent 78%);
-  opacity: 0.5;
+  opacity: 0.9;
 }
 
 .app-noise {
   position: absolute;
   inset: 0;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
+  opacity: 0.022;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .app-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(90% 70% at 50% 40%, transparent 40%, rgba(3, 4, 9, 0.72) 100%);
+  background: radial-gradient(90% 70% at 50% 40%, transparent 45%, rgba(246, 247, 251, 0.9) 100%);
 }
 
 .app-root {
@@ -227,7 +235,7 @@ svg {
   border-radius: var(--r-xl);
   backdrop-filter: blur(22px) saturate(150%);
   -webkit-backdrop-filter: blur(22px) saturate(150%);
-  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .card {
@@ -235,7 +243,7 @@ svg {
   background: var(--glass);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .card--hover {
@@ -282,7 +290,7 @@ svg {
 }
 
 .gradient-text {
-  background: linear-gradient(102deg, #fff 6%, var(--blue-soft) 46%, var(--violet-soft) 92%);
+  background: linear-gradient(102deg, #0e1729 6%, var(--blue-soft) 46%, var(--violet-soft) 92%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -302,7 +310,7 @@ svg {
 
 /* ---------------------------------------------------------------- buttons */
 .btn {
-  --btn-bg: rgba(255, 255, 255, 0.055);
+  --btn-bg: var(--surface);
   --btn-border: var(--line);
   --btn-fg: var(--text);
   position: relative;
@@ -335,7 +343,7 @@ svg {
 
 .btn:hover {
   border-color: var(--line-strong);
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(15, 23, 42, 0.055);
 }
 
 .btn:active {
@@ -349,10 +357,10 @@ svg {
 }
 
 .btn--primary {
-  --btn-fg: #070812;
+  --btn-fg: #ffffff;
   border-color: transparent;
-  background: linear-gradient(112deg, #d7e2ff, #9fb8ff 42%, #c2a6ff 100%);
-  box-shadow: 0 18px 40px -20px rgba(110, 140, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  background: linear-gradient(112deg, #3861e8, #6b52e8 58%, #8a5cf0 100%);
+  box-shadow: 0 18px 38px -20px rgba(56, 97, 232, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.32);
   font-weight: 600;
 }
 
@@ -360,15 +368,15 @@ svg {
   content: "";
   position: absolute;
   inset: -40% -10%;
-  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.85) 50%, transparent 80%);
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.45) 50%, transparent 80%);
   transform: translateX(-120%) skewX(-14deg);
   opacity: 0;
   z-index: -1;
 }
 
 .btn--primary:hover {
-  background: linear-gradient(112deg, #eaf0ff, #b3c8ff 42%, #d3bcff 100%);
-  box-shadow: 0 22px 50px -20px rgba(130, 155, 255, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: linear-gradient(112deg, #3560e4, #5f47dc 58%, #7b4de0 100%);
+  box-shadow: 0 24px 48px -20px rgba(56, 97, 232, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.34);
 }
 
 .btn--primary:hover::after {
@@ -384,20 +392,20 @@ svg {
 }
 
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.055);
+  background: rgba(15, 23, 42, 0.05);
   border-color: var(--line);
   color: var(--text);
 }
 
 .btn--danger {
-  color: #ffc4d8;
-  border-color: rgba(255, 122, 184, 0.28);
-  background: rgba(255, 122, 184, 0.1);
+  color: #b52c5f;
+  border-color: rgba(194, 47, 114, 0.32);
+  background: rgba(194, 47, 114, 0.08);
 }
 
 .btn--danger:hover {
-  background: rgba(255, 122, 184, 0.18);
-  border-color: rgba(255, 122, 184, 0.45);
+  background: rgba(194, 47, 114, 0.15);
+  border-color: rgba(194, 47, 114, 0.42);
 }
 
 .btn--sm {
@@ -465,15 +473,15 @@ svg {
   align-items: center;
   border-radius: var(--r-md);
   border: 1px solid var(--line);
-  background: rgba(9, 11, 22, 0.62);
+  background: var(--surface);
   transition: border-color 0.3s var(--ease-out), background 0.3s var(--ease-out),
     box-shadow 0.3s var(--ease-out);
 }
 
 .input-shell:focus-within {
-  border-color: rgba(143, 176, 255, 0.55);
-  background: rgba(12, 15, 29, 0.9);
-  box-shadow: 0 0 0 4px rgba(91, 140, 255, 0.1);
+  border-color: rgba(56, 97, 232, 0.55);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(56, 97, 232, 0.12);
 }
 
 .input-shell > svg {
@@ -517,7 +525,7 @@ textarea.input {
 select.input {
   appearance: none;
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a92b6' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23667086' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.95rem center;
   padding-right: 2.2rem;
@@ -530,7 +538,7 @@ select.input option {
 
 input[type="datetime-local"].input,
 input[type="date"].input {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 .input-affix {
@@ -555,7 +563,7 @@ input[type="date"].input {
 
 .input-affix button:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(15, 23, 42, 0.06);
 }
 
 .input-affix svg {
@@ -575,7 +583,7 @@ input[type="date"].input {
   align-items: center;
   gap: 0.35rem;
   font-size: 11.5px;
-  color: #ff9dc0;
+  color: #c62a62;
   min-height: 1.1em;
 }
 
@@ -586,16 +594,16 @@ input[type="date"].input {
 }
 
 .field.is-invalid .input-shell {
-  border-color: rgba(255, 122, 184, 0.55);
-  background: rgba(40, 12, 26, 0.4);
+  border-color: rgba(194, 47, 114, 0.5);
+  background: rgba(194, 47, 114, 0.06);
 }
 
 .field.is-valid .input-shell {
-  border-color: rgba(123, 241, 197, 0.36);
+  border-color: rgba(11, 122, 90, 0.42);
 }
 
 .field.is-valid .field__hint {
-  color: rgba(123, 241, 197, 0.85);
+  color: var(--mint);
 }
 
 /* ---------------------------------------------------------------- badges */
@@ -606,7 +614,7 @@ input[type="date"].input {
   padding: 0.22rem 0.55rem;
   border-radius: var(--r-pill);
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--surface-2);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.06em;
@@ -621,33 +629,33 @@ input[type="date"].input {
 }
 
 .badge--high {
-  color: #ffc2d6;
-  border-color: rgba(255, 122, 184, 0.3);
-  background: rgba(255, 122, 184, 0.1);
+  color: #b02a5f;
+  border-color: rgba(194, 47, 114, 0.3);
+  background: rgba(194, 47, 114, 0.08);
 }
 
 .badge--medium {
-  color: #ffe0b0;
-  border-color: rgba(255, 192, 106, 0.28);
-  background: rgba(255, 192, 106, 0.1);
+  color: #8f5306;
+  border-color: rgba(180, 83, 9, 0.26);
+  background: rgba(180, 83, 9, 0.14);
 }
 
 .badge--low {
-  color: #b9c8ff;
-  border-color: rgba(143, 176, 255, 0.26);
-  background: rgba(143, 176, 255, 0.09);
+  color: #2f4fbd;
+  border-color: rgba(56, 97, 232, 0.26);
+  background: rgba(56, 97, 232, 0.08);
 }
 
 .badge--done {
-  color: #a9f5d8;
-  border-color: rgba(123, 241, 197, 0.3);
-  background: rgba(123, 241, 197, 0.1);
+  color: #0b7054;
+  border-color: rgba(11, 122, 90, 0.28);
+  background: rgba(11, 122, 90, 0.1);
 }
 
 .badge--overdue {
-  color: #ffb3b3;
-  border-color: rgba(255, 120, 120, 0.32);
-  background: rgba(255, 120, 120, 0.1);
+  color: #b42323;
+  border-color: rgba(220, 38, 38, 0.3);
+  background: rgba(220, 38, 38, 0.08);
 }
 
 /* ---------------------------------------------------------------- toasts */
@@ -670,7 +678,7 @@ input[type="date"].input {
   padding: 0.85rem 1rem;
   border-radius: var(--r-md);
   border: 1px solid var(--line-strong);
-  background: rgba(12, 15, 29, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(18px);
   box-shadow: var(--shadow-md);
   font-size: 13px;
@@ -686,7 +694,7 @@ input[type="date"].input {
   height: 26px;
   border-radius: 9px;
   flex: none;
-  background: rgba(143, 176, 255, 0.14);
+  background: rgba(56, 97, 232, 0.1);
   color: var(--blue-soft);
 }
 
@@ -696,13 +704,13 @@ input[type="date"].input {
 }
 
 .toast--success .toast__icon {
-  background: rgba(123, 241, 197, 0.14);
+  background: rgba(11, 122, 90, 0.12);
   color: var(--mint);
 }
 
 .toast--error .toast__icon {
-  background: rgba(255, 122, 184, 0.16);
-  color: #ffa8c9;
+  background: rgba(194, 47, 114, 0.12);
+  color: #b7305f;
 }
 
 .toast__body strong {
@@ -737,7 +745,7 @@ input[type="date"].input {
 .modal-scrim {
   position: absolute;
   inset: 0;
-  background: rgba(3, 4, 9, 0.72);
+  background: rgba(15, 23, 42, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -748,8 +756,8 @@ input[type="date"].input {
   overflow-y: auto;
   border-radius: var(--r-xl);
   border: 1px solid var(--line-strong);
-  background: linear-gradient(165deg, rgba(20, 24, 44, 0.98), rgba(8, 10, 19, 0.99));
-  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: linear-gradient(165deg, #ffffff, #fbfcff);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   padding: 1.5rem;
 }
 
@@ -809,7 +817,7 @@ input[type="date"].input {
 
 .icon-btn:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(15, 23, 42, 0.06);
   border-color: var(--line);
 }
 
@@ -817,7 +825,7 @@ input[type="date"].input {
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--surface-2);
   border-radius: var(--r-sm);
 }
 
@@ -825,7 +833,7 @@ input[type="date"].input {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.06), transparent);
   transform: translateX(-100%);
   animation: shimmer 1.5s infinite;
 }
@@ -850,7 +858,7 @@ input[type="date"].input {
 /* scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+  scrollbar-color: rgba(15, 23, 42, 0.22) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -863,14 +871,14 @@ input[type="date"].input {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.18);
   border-radius: 99px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(15, 23, 42, 0.3);
   background-clip: padding-box;
 }
 

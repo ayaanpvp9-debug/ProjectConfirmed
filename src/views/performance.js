@@ -214,7 +214,7 @@ export async function render(root, ctx) {
                     const tier = score >= 70 ? "high" : score >= 40 ? "mid" : "low";
                     return `
                     <tr>
-                      <td style="color:#fff">${esc(row.test_title)}</td>
+                      <td style="color:var(--text)">${esc(row.test_title)}</td>
                       <td><span class="subject-chip" data-tone="${subjectTone(row.subject_name ?? "")}">${esc(row.subject_name ?? "")}</span></td>
                       <td class="mono" style="font-size:11px;color:var(--muted)">${esc(fmtDate(row.completed_at))}</td>
                       <td class="mono" style="font-size:11.5px">${row.correct_count}/${row.total_questions}</td>
@@ -249,8 +249,8 @@ export async function render(root, ctx) {
               tension: 0.38,
               fill: true,
               backgroundColor: (context) =>
-                verticalGradient(context, "rgba(91,140,255,0.32)", "rgba(91,140,255,0)"),
-              pointBackgroundColor: "#05070e",
+                verticalGradient(context, "rgba(56,97,232,0.26)", "rgba(56,97,232,0)"),
+              pointBackgroundColor: "#ffffff",
               pointBorderColor: CHART_COLORS.blueSoft,
               pointBorderWidth: 2,
             },
@@ -282,7 +282,7 @@ export async function render(root, ctx) {
             {
               data: bySubject.map((row) => row.value),
               backgroundColor: bySubject.map((_, index) => {
-                const palette = ["rgba(91,140,255,0.85)", "rgba(160,107,255,0.85)", "rgba(70,224,208,0.8)", "rgba(255,192,106,0.8)", "rgba(255,122,184,0.8)"];
+                const palette = ["rgba(56,97,232,0.85)", "rgba(122,63,240,0.85)", "rgba(15,118,110,0.8)", "rgba(180,83,9,0.8)", "rgba(194,47,114,0.8)"];
                 return palette[index % palette.length];
               }),
               borderRadius: 8,
@@ -294,7 +294,7 @@ export async function render(root, ctx) {
           responsive: true,
           indexAxis: "y",
           scales: {
-            x: { beginAtZero: true, max: 100, grid: { color: "rgba(255,255,255,0.05)" }, border: { display: false }, ticks: { callback: (v) => `${v}%` } },
+            x: { beginAtZero: true, max: 100, grid: { color: "rgba(15,23,42,0.06)" }, border: { display: false }, ticks: { callback: (v) => `${v}%` } },
             y: { grid: { display: false }, border: { display: false } },
           },
           plugins: { tooltip: { callbacks: { label: (item) => `${item.parsed.x}% average` } } },
@@ -313,8 +313,8 @@ export async function render(root, ctx) {
         datasets: [
           {
             data: weeks.map((week) => week.count),
-            backgroundColor: "rgba(123,241,197,0.6)",
-            hoverBackgroundColor: "rgba(123,241,197,0.9)",
+            backgroundColor: "rgba(11,122,90,0.6)",
+            hoverBackgroundColor: "rgba(11,122,90,0.9)",
             borderRadius: 6,
             maxBarThickness: 20,
           },

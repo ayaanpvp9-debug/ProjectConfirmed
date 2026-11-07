@@ -12,15 +12,15 @@ export function themeCharts() {
   if (themed) return;
   themed = true;
 
-  Chart.defaults.color = "rgba(195,201,230,0.72)";
+  Chart.defaults.color = "rgba(43,55,82,0.78)";
   Chart.defaults.font.family = "'Inter', 'Sora', system-ui, sans-serif";
   Chart.defaults.font.size = 11;
   Chart.defaults.font.weight = "400";
-  Chart.defaults.borderColor = "rgba(255,255,255,0.06)";
+  Chart.defaults.borderColor = "rgba(15,23,42,0.08)";
   Chart.defaults.animation = { duration: prefersReduced() ? 0 : 900, easing: "easeOutQuart" };
   Chart.defaults.plugins.legend.display = false;
-  Chart.defaults.plugins.tooltip.backgroundColor = "rgba(10,13,26,0.96)";
-  Chart.defaults.plugins.tooltip.borderColor = "rgba(255,255,255,0.12)";
+  Chart.defaults.plugins.tooltip.backgroundColor = "rgba(255,255,255,0.98)";
+  Chart.defaults.plugins.tooltip.borderColor = "rgba(15,23,42,0.12)";
   Chart.defaults.plugins.tooltip.borderWidth = 1;
   Chart.defaults.plugins.tooltip.titleFont = { family: "'Sora', sans-serif", size: 11, weight: "500" };
   Chart.defaults.plugins.tooltip.bodyFont = { family: "'Inter', sans-serif", size: 11 };
@@ -57,7 +57,7 @@ export const gridScale = {
   x: { grid: { display: false }, border: { display: false }, ticks: { padding: 6 } },
   y: {
     beginAtZero: true,
-    grid: { color: "rgba(255,255,255,0.05)" },
+    grid: { color: "rgba(15,23,42,0.06)" },
     border: { display: false },
     ticks: { padding: 8, maxTicksLimit: 4, precision: 0 },
   },
@@ -161,13 +161,13 @@ export function panel({ title = "", iconName = "", hint = "", body = "", flush =
 }
 
 export const CHART_COLORS = {
-  blue: "#5b8cff",
-  blueSoft: "rgba(143,176,255,0.9)",
-  violet: "#a06bff",
-  cyan: "#46e0d0",
-  amber: "#ffc06a",
-  rose: "#ff7ab8",
-  mint: "#7bf1c5",
+  blue: "#3861e8",
+  blueSoft: "rgba(56,97,232,0.9)",
+  violet: "#7a3ff0",
+  cyan: "#0f766e",
+  amber: "#b45309",
+  rose: "#c22f72",
+  mint: "#0b7a5a",
 };
 
 export function barGradient(context, color = "143,176,255") {

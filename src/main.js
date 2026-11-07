@@ -31,21 +31,21 @@ function injectSvgDefs() {
     <svg width="0" height="0" focusable="false">
       <defs>
         <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#5b8cff"/>
-          <stop offset="0.55" stop-color="#8f8cff"/>
-          <stop offset="1" stop-color="#c48cff"/>
+          <stop offset="0" stop-color="#3861e8"/>
+          <stop offset="0.55" stop-color="#6b52e8"/>
+          <stop offset="1" stop-color="#8a5cf0"/>
         </linearGradient>
         <linearGradient id="mintGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#7bf1c5"/>
-          <stop offset="1" stop-color="#46e0d0"/>
+          <stop offset="0" stop-color="#0b7a5a"/>
+          <stop offset="1" stop-color="#0f766e"/>
         </linearGradient>
         <linearGradient id="amberGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#ffd79a"/>
-          <stop offset="1" stop-color="#ff9f6a"/>
+          <stop offset="0" stop-color="#d97706"/>
+          <stop offset="1" stop-color="#b45309"/>
         </linearGradient>
         <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="rgba(143,176,255,0.95)"/>
-          <stop offset="1" stop-color="rgba(143,176,255,0.18)"/>
+          <stop offset="0" stop-color="rgba(56,97,232,0.95)"/>
+          <stop offset="1" stop-color="rgba(56,97,232,0.18)"/>
         </linearGradient>
       </defs>
     </svg>`;

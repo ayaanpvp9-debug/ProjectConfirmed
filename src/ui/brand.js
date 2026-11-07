@@ -5,15 +5,15 @@ export function brandMark(size = 42, { animated = false } = {}) {
     <svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" role="img" aria-label="ACADEMIA">
       <defs>
         <linearGradient id="brandGrad" x1="4" y1="2" x2="44" y2="46" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#a9c2ff"/>
-          <stop offset="0.55" stop-color="#7fa2ff"/>
-          <stop offset="1" stop-color="#c3a3ff"/>
+          <stop stop-color="#3861e8"/>
+          <stop offset="0.55" stop-color="#4c6ee8"/>
+          <stop offset="1" stop-color="#7a3ff0"/>
         </linearGradient>
       </defs>
       <path d="M24 5.5 41 43h-9.6L24 21.8 16.6 43H7Z" fill="url(#brandGrad)" fill-opacity="0.16"
             stroke="url(#brandGrad)" stroke-width="2" stroke-linejoin="round" ${animated ? 'class="brand-path"' : ""}/>
-      <path d="M17.4 33.4h13.2" stroke="#46e0d0" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="24" cy="24" r="20.5" stroke="rgba(255,255,255,0.14)" stroke-width="0.8" stroke-dasharray="2 7"/>
+      <path d="M17.4 33.4h13.2" stroke="#0f766e" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="24" cy="24" r="20.5" stroke="rgba(15,23,42,0.16)" stroke-width="0.8" stroke-dasharray="2 7"/>
     </svg>`;
 }
 
@@ -34,9 +34,9 @@ export function orbitArt() {
   <svg class="orbit" viewBox="0 0 400 400" fill="none" aria-hidden="true">
     <defs>
       <linearGradient id="orbitGrad" x1="30" y1="20" x2="370" y2="390" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#8fb0ff"/>
-        <stop offset="0.5" stop-color="#c3a3ff"/>
-        <stop offset="1" stop-color="#46e0d0"/>
+        <stop stop-color="#3861e8"/>
+        <stop offset="0.5" stop-color="#8a5cf0"/>
+        <stop offset="1" stop-color="#0f766e"/>
       </linearGradient>
     </defs>
     <circle cx="200" cy="200" r="172" stroke-dasharray="1 9"/>

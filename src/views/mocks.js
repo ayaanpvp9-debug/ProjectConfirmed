@@ -222,7 +222,7 @@ export async function render(root, ctx) {
             const tier = percentage >= 70 ? "high" : percentage >= 40 ? "mid" : "low";
             return `
             <div class="row-item">
-              <span class="row-item__dot" style="background:${percentage >= 70 ? "#7bf1c5" : percentage >= 40 ? "#ffc06a" : "#ff7ab8"}"></span>
+              <span class="row-item__dot" style="background:${percentage >= 70 ? "#0b7a5a" : percentage >= 40 ? "#b45309" : "#c22f72"}"></span>
               <span class="row-item__main">
                 <span class="row-item__title">${esc(test?.title ?? "Mock test")}</span>
                 <span class="row-item__meta">${esc(test?.mock_subjects?.name ?? "")} · ${esc(fmtDate(attempt.completed_at ?? attempt.started_at))}</span>
@@ -257,7 +257,7 @@ export async function render(root, ctx) {
             <div style="display:flex;gap:0.7rem;align-items:flex-start">
               <span class="timeline__marker" style="flex:none">${icon(iconName, { size: 13 })}</span>
               <span>
-                <strong style="display:block;font-family:var(--font-display);font-size:12.5px;color:#fff;font-weight:500">${title}</strong>
+                <strong style="display:block;font-family:var(--font-display);font-size:12.5px;color:var(--text);font-weight:500">${title}</strong>
                 <span style="font-size:11.5px;color:var(--muted)">${text}</span>
               </span>
             </div>`,
@@ -654,7 +654,7 @@ export async function render(root, ctx) {
           <div class="result__score">
             ${ringMarkup({ value: percent, label: "score", id: "result-ring", size: 186 })}
             <div style="text-align:center">
-              <div style="font-family:var(--font-display);font-size:15px;color:#fff">${headline}</div>
+              <div style="font-family:var(--font-display);font-size:15px;color:var(--text)">${headline}</div>
               <div class="mono" style="font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-dim);margin-top:0.2rem">
                 ${correct} of ${total} correct
               </div>

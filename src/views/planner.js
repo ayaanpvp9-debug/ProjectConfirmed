@@ -214,7 +214,7 @@ export async function render(root, ctx) {
             .map(
               (session) => `
             <div class="row-item">
-              <span class="row-item__dot" style="background:${subjectTone(session.subject) === "violet" ? "#a06bff" : "#8fb0ff"}"></span>
+              <span class="row-item__dot" style="background:${subjectTone(session.subject) === "violet" ? "#7a3ff0" : "#3861e8"}"></span>
               <span class="row-item__main">
                 <span class="row-item__title">${esc(session.title)}</span>
                 <span class="row-item__meta">${esc(session.subject)} · ${fmtMinutes(session.duration)}</span>

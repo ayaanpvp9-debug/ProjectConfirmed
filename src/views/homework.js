@@ -221,7 +221,7 @@ export async function render(root, ctx) {
               const overdue = new Date(task.deadline).getTime() < Date.now();
               return `
               <div class="row-item">
-                <span class="row-item__dot" style="background:${overdue ? "#ff7ab8" : "#8fb0ff"}"></span>
+                <span class="row-item__dot" style="background:${overdue ? "#c22f72" : "#3861e8"}"></span>
                 <span class="row-item__main">
                   <span class="row-item__title">${esc(task.title)}</span>
                   <span class="row-item__meta">${esc(task.subject)} · ${esc(task.priority)}</span>
