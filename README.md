@@ -13,7 +13,7 @@ scores, no fake statistics and no placeholder buttons.
 
 | Area | What it does |
 | --- | --- |
-| **Landing page** | Public introduction — no account needed. Explains what ACADEMIA is, why it exists, who it serves (school students, Class 1–12) and the four tools inside, with a prominent **Get Started** button. If the visitor already has a session, Get Started opens their workspace directly; otherwise it opens the auth screen. |
+| **Landing page** | Public introduction — no account needed. Explains what ACADEMIA is, why it exists, who it serves (school students, Class 1–12) and the four tools inside, with a prominent **Get Started** button. If the visitor already has a session, Get Started opens their workspace directly; otherwise it opens the auth screen. Includes a six-image daylight carousel (keyboard, swipe, dots, autoplay that pauses when off-screen) and a three-tile *everyday school life* photo strip. |
 | **Authentication** | Registration Registration (email + phone + username + password) validates format, checks duplicates through a `SECURITY DEFINER` RPC, creates the Supabase Auth user through an Edge Function and stores the extra fields. Animated success screen with a prominent *Back to login*. Login accepts **username + password only**. |
 | **Overview** | Greeting with the student's name, live date, homework completion percentage, completed/pending/overdue totals, upcoming deadlines, mock tests attempted, average score and a recent activity timeline — all from Supabase rows. |
 | **Homework Manager** | Full CRUD (subject, deadline, priority, status), search, status/subject filters, five sort modes, overdue highlighting, optimistic toggles, animated *YOUR HOMEWORK PROGRESS* bar with counting percentage, and a 7-day completion chart. |
@@ -25,7 +25,7 @@ scores, no fake statistics and no placeholder buttons.
 
 ### Interface details
 
-* Public landing page first, then auth, then the workspace — the landing uses the same palette, type and GSAP motion.
+* Public landing page first, then auth, then the workspace — the landing uses the same daylight palette, type and GSAP motion, with light-themed study photography in `public/images/` (lazy-loaded and compressed).
 * Collapsible sidebar with icon-only mode, unread notifications popover and account menu.
 * Hash-based routing (`#/overview`, `#/homework`, …) with animated view transitions — **no full page reloads**.
 * Keyboard: `Alt+1…7` switches views, `1–4` selects an option in an exam, `←/→` moves between questions, `M` marks for review.

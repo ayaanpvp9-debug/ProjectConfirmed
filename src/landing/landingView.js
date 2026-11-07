@@ -65,18 +65,18 @@ const STEPS = [
 
 const SLIDES = [
   {
-    src: "/images/learning-focus.jpg",
-    alt: "A student writing in a notebook beside an open textbook and a laptop, lit by cool blue screen light.",
+    src: "/images/study-desk.jpg",
+    alt: "A student in a cream sweater writing in a notebook at a white desk beside a sunlit window.",
     tag: "01 — Focused practice",
     title: "One subject, one hour, one clear next step.",
     text: "Homework, deadlines and revision sit in the same place, so the evening starts with work instead of decisions.",
     width: 1376,
     height: 768,
-    position: "50% 45%",
+    position: "50% 50%",
   },
   {
-    src: "/images/learning-digital.jpg",
-    alt: "A hand using a stylus on a tablet showing a geometry diagram and charts, next to stacked textbooks.",
+    src: "/images/study-tablet.jpg",
+    alt: "A hand drawing a geometry diagram with a stylus on a tablet, on a bright white desk.",
     tag: "02 — Practice on screen",
     title: "Draw it, solve it, then check the working.",
     text: "Five subjects of timed mock tests with solutions that unlock only after you submit.",
@@ -85,14 +85,71 @@ const SLIDES = [
     position: "50% 50%",
   },
   {
-    src: "/images/learning-together.jpg",
-    alt: "Three school students discussing a laptop together in a school library at night.",
+    src: "/images/study-library.jpg",
+    alt: "Three school students in uniform studying together at a sunlit library table.",
     tag: "03 — Built around school",
     title: "Textbooks by class, plans by week.",
     text: "A class-wise NCERT library and a study planner that follow the syllabus you actually have.",
-    width: 1584,
-    height: 672,
+    width: 1376,
+    height: 768,
     position: "50% 42%",
+  },
+  {
+    src: "/images/study-planner.jpg",
+    alt: "Hands filling a weekly planner on a white desk with tea, pastel sticky notes and a small plant.",
+    tag: "04 — The week, mapped",
+    title: "Sunday planning that survives Monday.",
+    text: "Block out study sessions once and the planner keeps the week honest, one day at a time.",
+    width: 1376,
+    height: 768,
+    position: "50% 50%",
+  },
+  {
+    src: "/images/study-lab.jpg",
+    alt: "Two students in white lab coats and safety glasses working with a microscope in a bright science lab.",
+    tag: "05 — Science, hands on",
+    title: "Curiosity has a paper to show for it.",
+    text: "Science and Computer Science papers reward careful working, not guesswork — and every mark is explained.",
+    width: 1376,
+    height: 768,
+    position: "50% 45%",
+  },
+  {
+    src: "/images/study-classroom.jpg",
+    alt: "A teacher explaining a diagram at a whiteboard while students take notes in a bright classroom.",
+    tag: "06 — Ready for class",
+    title: "Walk in knowing what was covered.",
+    text: "Yesterday's homework, this week's chapters and the next test all line up before the bell rings.",
+    width: 1376,
+    height: 768,
+    position: "55% 50%",
+  },
+];
+
+const MOMENTS = [
+  {
+    src: "/images/moment-notes.jpg",
+    alt: "Overhead view of a blank notebook, pastel highlighters, a pencil and paper clips on a white desk.",
+    label: "Desk notes",
+    text: "Highlighters, flashcards and one honest to-do list.",
+    width: 1200,
+    height: 896,
+  },
+  {
+    src: "/images/moment-team.jpg",
+    alt: "Two students laughing while they work through notebooks and a laptop at a bright table.",
+    label: "Library table",
+    text: "Two students stuck on the same question, working it out together.",
+    width: 1200,
+    height: 896,
+  },
+  {
+    src: "/images/moment-reading.jpg",
+    alt: "A student reading a textbook on the grass under a tree on a sunny campus lawn.",
+    label: "Between classes",
+    text: "A chapter on the grass before the next period starts.",
+    width: 1200,
+    height: 896,
   },
 ];
 
@@ -459,6 +516,36 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
                 <p class="feature-card__text">${esc(feature.text)}</p>
                 <span class="feature-card__meta">${esc(feature.meta)}</span>
               </article>`,
+            ).join("")}
+          </div>
+        </section>
+
+        <section class="landing-section landing-shell moments" aria-labelledby="moments-title">
+          <div class="landing-head">
+            <div>
+              <span class="eyebrow">Everyday school life</span>
+              <h2 class="landing-h2" id="moments-title" data-reveal>Where the work actually happens.</h2>
+            </div>
+            <p class="landing-p landing-head__note" data-reveal>
+              A desk by a window, a library table, a bench between classes — the workspace follows
+              you to all three.
+            </p>
+          </div>
+
+          <div class="moments__grid">
+            ${MOMENTS.map(
+              (moment) => `
+              <figure class="moment" data-reveal>
+                <div class="moment__media">
+                  <img src="${moment.src}" alt="${esc(moment.alt)}"
+                       width="${moment.width}" height="${moment.height}"
+                       loading="lazy" decoding="async" />
+                </div>
+                <figcaption>
+                  <span class="moment__label mono">${esc(moment.label)}</span>
+                  <span class="moment__text">${esc(moment.text)}</span>
+                </figcaption>
+              </figure>`,
             ).join("")}
           </div>
         </section>
