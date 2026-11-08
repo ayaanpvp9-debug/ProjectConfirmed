@@ -223,11 +223,13 @@ It contains 12 homework items, 8 study sessions, 3 graded mock attempts and 31 a
 
 ## 8. Code walkthrough
 
-If you need to explain how the project works — file by file — see
-**[`docs/CODE_GUIDE.md`](docs/CODE_GUIDE.md)**. It covers the architecture, the two end-to-end
-journeys (sign-up → login → workspace, and start → answer → submit → review a mock test), an entry
-for **every file**, the database/RLS/security model, a "where do I change X?" cheat sheet, a viva
-Q&A and a glossary.
+Two docs, pick your length:
+
+- **[`docs/FILE_NOTES.md`](docs/FILE_NOTES.md)** — the short one (~3 pages): one paragraph per file
+  explaining the logic behind it. Best for presenting.
+- **[`docs/CODE_GUIDE.md`](docs/CODE_GUIDE.md)** — the long one: architecture, two end-to-end journeys,
+  a detailed entry for every file, the database/RLS/security model, a "where do I change X?" cheat
+  sheet, a viva Q&A and a glossary.
 
 ## 9. Project structure
 
