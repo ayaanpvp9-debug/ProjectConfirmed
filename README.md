@@ -221,7 +221,15 @@ It contains 12 homework items, 8 study sessions, 3 graded mock attempts and 31 a
 
 ---
 
-## 8. Project structure
+## 8. Code walkthrough
+
+If you need to explain how the project works — file by file — see
+**[`docs/CODE_GUIDE.md`](docs/CODE_GUIDE.md)**. It covers the architecture, the two end-to-end
+journeys (sign-up → login → workspace, and start → answer → submit → review a mock test), an entry
+for **every file**, the database/RLS/security model, a "where do I change X?" cheat sheet, a viva
+Q&A and a glossary.
+
+## 9. Project structure
 
 ```
 .
@@ -265,7 +273,7 @@ asks to create something.
 
 ---
 
-## 9. Design & accessibility notes
+## 10. Design & accessibility notes
 
 * Three typefaces (Sora display, Inter UI, JetBrains Mono numerals), deep-navy atmosphere with
   aurora gradients, a fine grid, noise and a vignette — **no particles or 3D**.
@@ -279,7 +287,7 @@ asks to create something.
 
 ---
 
-## 10. Verified content sources
+## 11. Verified content sources
 
 NCERT links were checked against `ncert.nic.in/textbook.php?<code>=0-<n>` before being seeded
 (for example `jemh1` — Class 10 Mathematics, `aemh1` — Class 1 Math-Magic, `iesc1` — Class 9
@@ -289,7 +297,7 @@ pointing somewhere invented.
 
 ---
 
-## 11. Licence
+## 12. Licence
 
 Built as a school coding-competition entry. Content and NCERT material remain the property of
 their respective owners.
