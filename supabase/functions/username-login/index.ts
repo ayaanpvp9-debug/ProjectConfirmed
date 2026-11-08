@@ -1,5 +1,5 @@
 // ============================================================================
-// ACADEMIA · username-login
+// Ayaan Academia · username-login
 // Secure server-side username → account lookup, then a real Supabase Auth
 // password grant. The account email never leaves the server.
 // Deploy: supabase functions deploy username-login --no-verify-jwt

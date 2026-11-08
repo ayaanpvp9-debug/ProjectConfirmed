@@ -1,5 +1,5 @@
 /**
- * ACADEMIA motion engine.
+ * Ayaan Academia motion engine.
  * Every animated moment in the app routes through here so that the
  * "reduce motion" preference can switch everything off in one place.
  */

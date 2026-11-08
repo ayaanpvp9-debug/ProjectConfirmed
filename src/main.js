@@ -1,5 +1,5 @@
 /**
- * ACADEMIA · application bootstrap
+ * Ayaan Academia · application bootstrap
  *
  * Flow: public introduction page → authentication → workspace.
  * Visitors can read the landing page without an account; "Get Started" opens
@@ -75,7 +75,7 @@ async function showLanding() {
     } = await supabase.auth.getSession();
     signedIn = Boolean(session?.user);
   } catch (error) {
-    console.warn("[academia] session check failed", error);
+    console.warn("[ayaan-academia] session check failed", error);
   }
 
   landingHandle = renderLanding(app, {
@@ -96,14 +96,14 @@ async function handleGetStarted() {
     const { data } = await supabase.auth.getSession();
     session = data?.session ?? null;
   } catch (error) {
-    console.warn("[academia] session check failed", error);
+    console.warn("[ayaan-academia] session check failed", error);
   }
 
   if (session?.user) {
     try {
       await startApp(session.user);
     } catch (error) {
-      console.warn("[academia] workspace restore failed", error);
+      console.warn("[ayaan-academia] workspace restore failed", error);
       await supabase.auth.signOut().catch(() => {});
       await showAuth();
       return;
@@ -189,7 +189,7 @@ async function boot() {
     // first screen for everyone, and "Get Started" decides where to go.
     await showLanding();
   } catch (error) {
-    console.error("[academia] boot failed", error);
+    console.error("[ayaan-academia] boot failed", error);
     await showAuth();
   }
 
@@ -205,11 +205,11 @@ supabase.auth.onAuthStateChange((event) => {
 });
 
 window.addEventListener("error", (event) => {
-  console.error("[academia] uncaught", event.error ?? event.message);
+  console.error("[ayaan-academia] uncaught", event.error ?? event.message);
 });
 
 window.addEventListener("unhandledrejection", (event) => {
-  console.error("[academia] unhandled rejection", event.reason);
+  console.error("[ayaan-academia] unhandled rejection", event.reason);
 });
 
 boot();

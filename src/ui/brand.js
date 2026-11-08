@@ -1,8 +1,9 @@
 import { esc } from "../lib/dom.js";
+import { APP } from "../lib/config.js";
 
 export function brandMark(size = 42, { animated = false } = {}) {
   return `
-    <svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" role="img" aria-label="ACADEMIA">
+    <svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" role="img" aria-label="${esc(APP.name)}">
       <defs>
         <linearGradient id="brandGrad" x1="4" y1="2" x2="44" y2="46" gradientUnits="userSpaceOnUse">
           <stop stop-color="#3861e8"/>
@@ -22,7 +23,7 @@ export function brandBlock({ tagline = "Student Workspace", size = 42 } = {}) {
     <div class="brand">
       <div class="brand__mark">${brandMark(size)}</div>
       <div class="brand__word">
-        <span class="brand__name">${esc("ACADEMIA")}</span>
+        <span class="brand__name">${esc(APP.name)}</span>
         <span class="brand__tag">${esc(tagline)}</span>
       </div>
     </div>`;

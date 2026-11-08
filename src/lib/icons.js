@@ -174,7 +174,7 @@ function renderNode(node) {
 export function icon(name, options = {}) {
   const node = registry[name];
   if (!node) {
-    console.warn(`[academia] unknown icon: ${name}`);
+    console.warn(`[ayaan-academia] unknown icon: ${name}`);
     return "";
   }
   const [tag, attrs, children] = node;

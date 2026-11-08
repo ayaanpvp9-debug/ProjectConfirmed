@@ -1,5 +1,5 @@
 -- ============================================================================
--- ACADEMIA — reference + demonstration seed data
+-- Ayaan Academia — reference + demonstration seed data
 -- Every NCERT link below was verified against ncert.nic.in's official
 -- textbook URLs (https://ncert.nic.in/textbook.php?<code>=0-<chapters>).
 -- ============================================================================

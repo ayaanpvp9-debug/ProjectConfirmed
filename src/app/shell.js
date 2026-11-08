@@ -4,6 +4,7 @@
 import { supabase } from "../lib/supabase.js";
 import { icon } from "../lib/icons.js";
 import { brandMark } from "../ui/brand.js";
+import { APP } from "../lib/config.js";
 import { showToast } from "../ui/toast.js";
 import { confirmDialog } from "../ui/modal.js";
 import {
@@ -55,7 +56,7 @@ const shellTemplate = () => `
         <div class="brand">
           <div class="brand__mark">${brandMark(34)}</div>
           <div class="brand__word">
-            <span class="brand__name">Academia</span>
+            <span class="brand__name">${esc(APP.name)}</span>
             <span class="brand__tag">Student OS</span>
           </div>
         </div>
@@ -289,7 +290,7 @@ export async function mountWorkspace(root, { profile, onSignOut }) {
     popover.querySelector("[data-sign-out]").addEventListener("click", async () => {
       closePopovers();
       const confirmed = await confirmDialog({
-        title: "Sign out of ACADEMIA?",
+        title: `Sign out of ${APP.name}?`,
         message: "Your work is saved to your account. You can sign back in with your username.",
         confirmLabel: "Sign out",
         danger: true,
@@ -345,7 +346,7 @@ export async function mountWorkspace(root, { profile, onSignOut }) {
       enterView(viewEl);
       emit("view:changed", id);
     } catch (error) {
-      console.error("[academia] view failed", error);
+      console.error("[ayaan-academia] view failed", error);
       viewEl.innerHTML = `
         <div class="empty">
           <span class="empty__icon">${icon("AlertTriangle", { size: 22 })}</span>

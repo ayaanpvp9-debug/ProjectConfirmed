@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ACADEMIA · application shell (sidebar, topbar, navigation, mobile)
+   Ayaan Academia · application shell (sidebar, topbar, navigation, mobile)
    ========================================================================== */
 
 .workspace {
@@ -40,8 +40,8 @@
 }
 
 .sidebar .brand__name {
-  font-size: 13px;
-  letter-spacing: 0.3em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
 }
 
 .sidebar .brand__mark {
@@ -252,6 +252,9 @@
 .workspace[data-sidebar="compact"] .brand__word {
   opacity: 0;
   pointer-events: none;
+  /* the wordmark is longer now — collapse it so the toggle stays reachable */
+  width: 0;
+  overflow: hidden;
 }
 
 .workspace[data-sidebar="compact"] .nav-item,

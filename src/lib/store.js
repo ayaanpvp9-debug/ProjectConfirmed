@@ -19,7 +19,7 @@ export function emit(event, payload) {
     try {
       handler(payload);
     } catch (error) {
-      console.error(`[academia] listener for "${event}" failed`, error);
+      console.error(`[ayaan-academia] listener for "${event}" failed`, error);
     }
   });
 }

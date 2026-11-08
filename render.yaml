@@ -1,7 +1,9 @@
 # -----------------------------------------------------------------------------
-# ACADEMIA — Render Blueprint
+# Ayaan Academia — Render Blueprint
 #
 # Deploys the Vite build as a Render Static Site (free tier friendly).
+# The service is still named `academia` so the existing hosted URL and any
+# already-configured environment variables keep working after the rebrand.
 # Create it with: Render Dashboard → New + → Blueprint → pick this repository.
 #
 # The two VITE_ variables are baked into the bundle at BUILD time, so after you

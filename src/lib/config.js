@@ -2,7 +2,7 @@
  * Runtime configuration.
  *
  * Values come from `.env` (see `.env.example`). The fallback below points at
- * the deployed ACADEMIA project so a fresh clone runs without extra setup.
+ * the deployed Ayaan Academia project so a fresh clone runs without extra setup.
  *
  * The anon key is *public by design* — Supabase Row Level Security is what
  * protects the data. The service_role key must never appear in client code.
@@ -21,8 +21,10 @@ export const FUNCTIONS_URL = (
 ).replace(/\/+$/, "");
 
 export const APP = {
-  name: "ACADEMIA",
+  name: "Ayaan Academia",
   tagline: "Student Workspace",
+  // Storage keys keep the original prefix so existing sessions, saved
+  // preferences and the Supabase auth token survive the rename.
   storagePrefix: "academia.",
 };
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ACADEMIA · authentication experience
+   Ayaan Academia · authentication experience
    ========================================================================== */
 
 .auth-stage {
@@ -52,10 +52,12 @@
 
 .brand__name {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 600;
-  letter-spacing: 0.34em;
+  /* two words now, so the tracking is calmer and the line never wraps */
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--text);
 }
 

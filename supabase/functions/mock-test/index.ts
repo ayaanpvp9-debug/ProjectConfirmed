@@ -1,5 +1,5 @@
 // ============================================================================
-// ACADEMIA · mock-test
+// Ayaan Academia · mock-test
 // The only path to mock-exam data. It issues questions *without* the answer
 // key, persists answers mid-attempt, grades on the server and only then
 // reveals solutions. Requires a valid Supabase JWT.

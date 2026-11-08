@@ -1,5 +1,5 @@
 /**
- * ACADEMIA · authentication stage
+ * Ayaan Academia · authentication stage
  * Login (username + password only) and registration (email, phone, username,
  * password) with live availability checks, inline validation and a
  * server-side account creation flow.
@@ -230,7 +230,7 @@ const template = () => `
           </div>
           <h3 class="auth-success__title">Account created</h3>
           <p class="auth-success__text">
-            Your workspace is ready. Sign in with your username and password to enter ACADEMIA.
+            Your workspace is ready. Sign in with your username and password to enter Ayaan Academia.
           </p>
           <div class="auth-success__meta">
             ${icon("UserCheck", { size: 13 })}

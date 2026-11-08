@@ -1,5 +1,5 @@
 // ============================================================================
-// ACADEMIA · register-student
+// Ayaan Academia · register-student
 // Server-side registration: validates every field, enforces unique username /
 // email / phone, creates the Supabase Auth user and the linked profile row.
 // If the profile insert fails the auth user is removed, so no orphans remain.
@@ -118,7 +118,7 @@ Deno.serve(async (req) => {
     await admin.from("activity_events").insert({
       user_id: created.user.id,
       kind: "account",
-      title: "Joined ACADEMIA",
+      title: "Joined Ayaan Academia",
       detail: "Workspace created",
     });
 

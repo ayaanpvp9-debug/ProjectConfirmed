@@ -196,7 +196,7 @@ export async function render(root, ctx) {
           </header>
           <div class="panel__body">
             <p class="muted" style="font-size:12.5px;line-height:1.65">
-              ACADEMIA · student workspace. Authentication, homework, planner, NCERT library and
+              Ayaan Academia · student workspace. Authentication, homework, planner, NCERT library and
               server-graded mock tests are backed by Supabase with Row Level Security.
             </p>
             <div style="display:flex;gap:0.45rem;flex-wrap:wrap;margin-top:0.9rem">
@@ -457,7 +457,7 @@ export async function render(root, ctx) {
 
   root.querySelector("[data-sign-out]").addEventListener("click", async () => {
     const confirmed = await confirmDialog({
-      title: "Sign out of ACADEMIA?",
+      title: "Sign out of Ayaan Academia?",
       message: "Your work stays saved to your account.",
       confirmLabel: "Sign out",
       danger: true,

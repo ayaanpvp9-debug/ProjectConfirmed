@@ -1,5 +1,5 @@
 -- ============================================================================
--- ACADEMIA — optional demonstration workspace
+-- Ayaan Academia — optional demonstration workspace
 -- Creates clearly-labelled demo content for one existing student so the
 -- dashboards, charts and history can be explored immediately.
 --

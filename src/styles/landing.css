@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ACADEMIA · public landing page
+   Ayaan Academia · public landing page
    The first screen for visitors — same daylight palette, same type system,
    same motion language as the workspace.
    ========================================================================== */
@@ -850,8 +850,8 @@
 }
 
 .landing-footer__brand .brand__name {
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
 }
 
 .landing-footer__brand .brand__tag {

@@ -286,7 +286,7 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
     <div class="landing" data-landing>
       <header class="landing-nav" data-nav>
         <div class="landing-shell landing-nav__inner">
-          <a class="landing-brand" href="#top" aria-label="ACADEMIA home">
+          <a class="landing-brand" href="#top" aria-label="Ayaan Academia home">
             ${brandBlock({ tagline: "Student Workspace", size: 38 })}
           </a>
           <nav class="landing-nav__links" aria-label="Landing sections">
@@ -314,7 +314,7 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
               <span class="hero__line"><span class="gradient-text" data-hero-line>your school year.</span></span>
             </h1>
             <p class="hero__lede" data-hero-fade>
-              ACADEMIA is a study workspace for school students. Homework, your study plan,
+              Ayaan Academia is a study workspace for school students. Homework, your study plan,
               NCERT textbooks and five-subject mock tests live in one place — so your evenings
               go into studying, not into finding out what to study.
             </p>
@@ -445,7 +445,7 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
                 PDFs and a camera roll full of homework photos. Nothing talks to anything else.
               </p>
               <p class="landing-p" data-reveal>
-                ACADEMIA grew out of a school coding project with one rule: every number on the
+                Ayaan Academia grew out of a school coding project with one rule: every number on the
                 screen must come from the student's own work. No invented streaks, no inflated
                 progress. Just your assignments, your plan and your tests — with an honest picture
                 of where you actually stand.
@@ -634,7 +634,7 @@ export function renderLanding(root, { signedIn = false, onGetStarted, onSignIn, 
       // landing back instead of leaving an invisible screen behind.
       if (page.isConnected) gsap.set(page, { opacity: 1, y: 0 });
     } catch (error) {
-      console.error("[academia] landing navigation failed", error);
+      console.error("[ayaan-academia] landing navigation failed", error);
       leaving = false;
       gsap.set(page, { opacity: 1, y: 0 });
       page.querySelectorAll("[data-get-started]").forEach((button) => {

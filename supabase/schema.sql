@@ -1,5 +1,5 @@
 -- ============================================================================
--- ACADEMIA — Supabase schema
+-- Ayaan Academia — Supabase schema
 -- Run this in the Supabase SQL Editor (or `supabase db push`) before seeding.
 -- ============================================================================
 
